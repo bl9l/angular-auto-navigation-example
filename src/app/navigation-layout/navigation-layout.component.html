@@ -1,0 +1,35 @@
+<!--
+  Пподобная констркция, с инлайн переменной в шаблоне,
+  не работает по неясным причинам
+-->
+<!--
+  <ng-container *ngIf="routerOutlet.activatedRoute as activatedRoute">
+    <div class="title">
+      {{ activatedRoute.routeConfig.data.title }}
+    </div>
+
+    <div class="widget-navigation" *ngIf="activatedRoute">
+      <ng-container *ngFor="let ch of activatedRoute.routeConfig.children">
+        <a *ngIf="ch.data" [routerLink]="[baseUrl, ch.path]" class="menu-link">
+          {{ ch.data.title }}
+        </a>
+      </ng-container>
+    </div>
+  </ng-container>
+-->
+
+
+<div class="title">
+  {{ activatedRoute.routeConfig.data.title }}
+</div>
+
+<!-- Выврдми ссылки -->
+<div>
+  <ng-container *ngFor="let ch of activatedRoute.routeConfig.children">
+    <a *ngIf="ch.data" [routerLink]="[baseUrl, ch.path]">
+      {{ ch.data.title }}
+    </a>
+  </ng-container>
+</div>
+
+<router-outlet></router-outlet>
